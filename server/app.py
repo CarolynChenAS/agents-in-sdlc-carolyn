@@ -16,4 +16,5 @@ init_db(app)
 app.register_blueprint(games_bp)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5100) # Port 5100 to avoid macOS conflicts
+    debug_mode = os.environ.get('FLASK_DEBUG', '0') == '1'
+    app.run(debug=debug_mode, port=5100) # Port 5100 to avoid macOS conflicts
