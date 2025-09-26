@@ -16,6 +16,31 @@ A script file has been created to launch the site. You can run it by:
 
 Then navigate to the [website](http://localhost:4321) to see the site!
 
+## Additional Projects
+
+### Sudoku Game
+
+A separate, standalone Sudoku game has been added to the repository in the `sudoku-game/` directory. This is a complete web-based Sudoku game with:
+
+- 🎯 Multiple difficulty levels (Easy, Medium, Hard)
+- 🔍 Smart hint system
+- ⏱️ Timer functionality  
+- 💡 Input validation and error highlighting
+- 🎨 Beautiful responsive design with dark theme
+- 🎮 Complete game controls (new game, reset, clear)
+
+To run the Sudoku game:
+
+```bash
+cd sudoku-game
+pip install -r requirements.txt
+python app.py
+```
+
+Then navigate to [http://localhost:5001](http://localhost:5001) to play!
+
+See the [Sudoku Game README](./sudoku-game/README.md) for more details.
+
 ## License 
 
 This project is licensed under the terms of the MIT open source license. Please refer to the [LICENSE](./LICENSE) for the full terms.

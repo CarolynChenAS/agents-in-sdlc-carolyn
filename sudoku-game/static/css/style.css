@@ -1,0 +1,452 @@
+/* 數獨遊戲樣式 - 黑暗主題 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 標題區域 */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #64b5f6;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(100, 181, 246, 0.3);
+}
+
+.header p {
+    font-size: 1.1rem;
+    color: #94a3b8;
+}
+
+/* 控制面板 */
+.control-panel {
+    background: rgba(30, 41, 59, 0.8);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(100, 181, 246, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.game-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    text-align: center;
+    padding: 10px;
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 8px;
+    border: 1px solid rgba(100, 181, 246, 0.1);
+}
+
+.info-item .label {
+    display: block;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 5px;
+}
+
+.info-item span:last-child {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #64b5f6;
+}
+
+.difficulty-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.difficulty-selector label {
+    color: #e2e8f0;
+    font-weight: 500;
+}
+
+.difficulty-selector select {
+    background: rgba(15, 23, 42, 0.8);
+    color: #e2e8f0;
+    border: 1px solid rgba(100, 181, 246, 0.3);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 1rem;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* 按鈕樣式 */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: none;
+    min-width: 80px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6b7280, #4b5563);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #5b6370, #374151);
+}
+
+.btn-accent {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+}
+
+.btn-accent:hover {
+    background: linear-gradient(135deg, #e98f09, #c2640a);
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: white;
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 數獨棋盤 */
+.game-board-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.sudoku-board {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 2px;
+    background: #64b5f6;
+    border: 3px solid #64b5f6;
+    border-radius: 12px;
+    padding: 4px;
+    width: 450px;
+    height: 450px;
+}
+
+.sudoku-cell {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(100, 181, 246, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #e2e8f0;
+}
+
+.sudoku-cell:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: #64b5f6;
+}
+
+.sudoku-cell.selected {
+    background: rgba(59, 130, 246, 0.4);
+    border-color: #3b82f6;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.sudoku-cell.original {
+    background: rgba(30, 41, 59, 0.9);
+    color: #64b5f6;
+    font-weight: 900;
+}
+
+.sudoku-cell.hint {
+    background: rgba(245, 158, 11, 0.3);
+    border-color: #f59e0b;
+}
+
+.sudoku-cell.error {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: #ef4444;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+}
+
+/* 3x3 子網格邊界 */
+.sudoku-cell:nth-child(3n) {
+    border-right: 2px solid #64b5f6;
+}
+
+.sudoku-cell:nth-child(n+19):nth-child(-n+27),
+.sudoku-cell:nth-child(n+46):nth-child(-n+54) {
+    border-bottom: 2px solid #64b5f6;
+}
+
+/* 數字輸入面板 */
+.number-pad {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.number-buttons {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 8px;
+    max-width: 450px;
+    margin: 0 auto 15px;
+}
+
+.number-btn {
+    aspect-ratio: 1;
+    background: rgba(30, 41, 59, 0.8);
+    border: 2px solid rgba(100, 181, 246, 0.3);
+    border-radius: 8px;
+    color: #e2e8f0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.number-btn:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: #64b5f6;
+    transform: scale(1.05);
+}
+
+.number-btn.selected {
+    background: rgba(59, 130, 246, 0.4);
+    border-color: #3b82f6;
+}
+
+/* 消息區域 */
+.message-area {
+    min-height: 50px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.message-area.success {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid #22c55e;
+    color: #22c55e;
+}
+
+.message-area.error {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+}
+
+.message-area.info {
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid #3b82f6;
+    color: #3b82f6;
+}
+
+/* 模態框 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 500px;
+    text-align: center;
+    border: 1px solid rgba(100, 181, 246, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h2 {
+    color: #64b5f6;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.completion-stats {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 8px;
+}
+
+.completion-stats p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* 遊戲說明 */
+.instructions {
+    background: rgba(30, 41, 59, 0.6);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid rgba(100, 181, 246, 0.2);
+}
+
+.instructions h3 {
+    color: #64b5f6;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.instructions ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.instructions li {
+    margin: 8px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.instructions li::before {
+    content: "▶";
+    position: absolute;
+    left: 0;
+    color: #64b5f6;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .sudoku-board {
+        width: 360px;
+        height: 360px;
+    }
+    
+    .sudoku-cell {
+        font-size: 1.2rem;
+    }
+    
+    .number-buttons {
+        max-width: 360px;
+    }
+    
+    .control-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sudoku-board {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .sudoku-cell {
+        font-size: 1rem;
+    }
+    
+    .number-buttons {
+        max-width: 300px;
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .game-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
